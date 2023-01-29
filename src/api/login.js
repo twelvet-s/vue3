@@ -5,16 +5,19 @@ export function login(username, password, code, uuid) {
   const data = {
     username,
     password,
+    grant_type: "password",
+    scope: "server",
     code,
     uuid
   }
+  const auth = 'Basic ' + window.btoa("twelvet:123456")
   return request({
-    url: '/login',
+    url: '/auth/oauth2/token',
     headers: {
-      isToken: false
+      Authorization: auth
     },
     method: 'post',
-    data: data
+    params: data
   })
 }
 
@@ -33,7 +36,7 @@ export function register(data) {
 // 获取用户详细信息
 export function getInfo() {
   return request({
-    url: '/getInfo',
+    url: '/system/user/getInfo',
     method: 'get'
   })
 }
@@ -41,7 +44,7 @@ export function getInfo() {
 // 退出方法
 export function logout() {
   return request({
-    url: '/logout',
+    url: '/auth/token/logout',
     method: 'post'
   })
 }
