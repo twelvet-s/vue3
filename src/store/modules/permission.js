@@ -36,9 +36,10 @@ const usePermissionStore = defineStore(
         return new Promise(resolve => {
           // 向后端请求路由数据
           getRouters().then(res => {
-            const sdata = JSON.parse(JSON.stringify(res.data))
-            const rdata = JSON.parse(JSON.stringify(res.data))
-            const defaultData = JSON.parse(JSON.stringify(res.data))
+            const resRoutes = transChildren(res.data)
+            const sdata = JSON.parse(JSON.stringify(resRoutes))
+            const rdata = JSON.parse(JSON.stringify(resRoutes))
+            const defaultData = JSON.parse(JSON.stringify(resRoutes))
             const sidebarRoutes = filterAsyncRouter(sdata)
             const rewriteRoutes = filterAsyncRouter(rdata, false, true)
             const defaultRoutes = filterAsyncRouter(defaultData)
@@ -53,7 +54,18 @@ const usePermissionStore = defineStore(
         })
       }
     }
+  }
+)
+
+// 转换子菜单
+function transChildren(routes) {
+  routes.forEach(item => {
+    if (item.routes) {
+      item.children = transChildren(item.routes)
+    }
   })
+  return routes
+}
 
 // 遍历后台传来的路由字符串，转换为组件对象
 function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
