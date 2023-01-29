@@ -15,7 +15,7 @@
 
 <script setup>
 import variables from '@/assets/styles/variables.module.scss'
-import logo from '@/assets/logo/logo.png'
+import logo from '@/assets/logo/logo.svg'
 import useSettingsStore from '@/store/modules/settings'
 
 defineProps({
@@ -25,7 +25,7 @@ defineProps({
   }
 })
 
-const title = ref('twelvet管理系统');
+const title = ref('twelvet');
 const settingsStore = useSettingsStore();
 const sideTheme = computed(() => settingsStore.sideTheme);
 </script>

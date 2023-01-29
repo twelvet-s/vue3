@@ -59,7 +59,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2022 ruoyi.vip All Rights Reserved.</span>
+      <span>Copyright © 2023-2023 twelvet All Rights Reserved.</span>
     </div>
   </div>
 </template>
@@ -160,7 +160,7 @@ getCookie();
   background-size: cover;
 }
 .title {
-  margin: 0px auto 30px auto;
+  margin: 0 auto 30px auto;
   text-align: center;
   color: #707070;
 }
