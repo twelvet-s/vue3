@@ -20,7 +20,7 @@
         :key="child.path"
         :is-nest="true"
         :item="child"
-        :base-path="resolvePath(child.path)"
+        :base-path="child.path"
         class="nest-menu"
       />
     </el-sub-menu>
@@ -30,7 +30,7 @@
 <script setup>
 import { isExternal } from '@/utils/validate'
 import AppLink from './Link'
-import { getNormalPath } from '@/utils/ruoyi'
+import { getNormalPath } from '@/utils/twelvet'
 
 const props = defineProps({
   // route object
@@ -86,7 +86,9 @@ function resolvePath(routePath, routeQuery) {
     return props.basePath
   }
   if (routeQuery) {
+   
     let query = JSON.parse(routeQuery);
+    alert(getNormalPath(props.basePath + '/' + routePath))
     return { path: getNormalPath(props.basePath + '/' + routePath), query: query }
   }
   return getNormalPath(props.basePath + '/' + routePath)

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElNotification , ElMessageBox, ElMessage, ElLoading } from 'element-plus'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
-import { tansParams, blobValidate } from '@/utils/ruoyi'
+import { tansParams, blobValidate } from '@/utils/twelvet'
 import cache from '@/plugins/cache'
 import { saveAs } from 'file-saver'
 import useUserStore from '@/store/modules/user'
@@ -80,7 +80,7 @@ service.interceptors.response.use(res => {
         isRelogin.show = true;
         ElMessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', { confirmButtonText: '重新登录', cancelButtonText: '取消', type: 'warning' }).then(() => {
           isRelogin.show = false;
-          useUserStore().logOut().then(() => {
+          useUserStore().logOut(true).then(() => {
             location.href = '/index';
           })
       }).catch(() => {

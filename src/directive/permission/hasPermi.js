@@ -1,6 +1,6 @@
  /**
  * v-hasPermi 操作权限处理
- * Copyright (c) 2019 ruoyi
+ * Copyright (c) 2023 twelvet
  */
  
 import useUserStore from '@/store/modules/user'

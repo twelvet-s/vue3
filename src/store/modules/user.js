@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/login'
-import {getToken, setToken, removeToken, setRefreshToken, getRefreshToken} from '@/utils/auth'
+import { getToken, setToken, removeToken, setRefreshToken, getRefreshToken } from '@/utils/auth'
 import defAva from '@/assets/images/profile.jpg'
 
 const useUserStore = defineStore(
@@ -56,18 +56,28 @@ const useUserStore = defineStore(
         })
       },
       // 退出系统
-      logOut() {
+      logOut(requiredApiFlag) {
         return new Promise((resolve, reject) => {
-          logout().then(() => {
+          if (!requiredApiFlag) {
+            logout().then(() => {
+              this.token = ''
+              this.refreshToken = ''
+              this.roles = []
+              this.permissions = []
+              removeToken()
+              resolve()
+            }).catch(error => {
+              reject(error)
+            })
+          } else {
             this.token = ''
             this.refreshToken = ''
             this.roles = []
             this.permissions = []
             removeToken()
             resolve()
-          }).catch(error => {
-            reject(error)
-          })
+          }
+
         })
       }
     }

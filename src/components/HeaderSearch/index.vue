@@ -19,7 +19,7 @@
 
 <script setup>
 import Fuse from 'fuse.js'
-import { getNormalPath } from '@/utils/ruoyi'
+import { getNormalPath } from '@/utils/twelvet'
 import { isHttp } from '@/utils/validate'
 import usePermissionStore from '@/store/modules/permission'
 

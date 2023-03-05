@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus'
 import { saveAs } from 'file-saver'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
-import { blobValidate } from '@/utils/ruoyi'
+import { blobValidate } from '@/utils/twelvet'
 
 const baseURL = import.meta.env.VITE_APP_BASE_API
 

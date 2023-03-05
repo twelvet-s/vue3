@@ -32,11 +32,15 @@ const usePermissionStore = defineStore(
       setSidebarRouters(routes) {
         this.sidebarRouters = routes
       },
-      generateRoutes(roles) {
+      generateRoutes() {
         return new Promise(resolve => {
           // 向后端请求路由数据
           getRouters().then(res => {
-            const resRoutes = transChildren(res.data)
+            const data = res.data
+            // 移除首页
+            const removeHomeKey = data.map(item => item.name).indexOf("欢迎页")
+            data.splice(removeHomeKey, 1)
+            const resRoutes = transChildren(data)
             const sdata = JSON.parse(JSON.stringify(resRoutes))
             const rdata = JSON.parse(JSON.stringify(resRoutes))
             const defaultData = JSON.parse(JSON.stringify(resRoutes))
