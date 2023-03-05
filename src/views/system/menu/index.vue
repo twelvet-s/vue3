@@ -211,7 +211,7 @@
                      </template>
                   </el-form-item>
                </el-col>
-               <el-col :span="12" v-if="form.menuType == 'C'">
+               <!-- <el-col :span="12" v-if="form.menuType == 'C'">
                   <el-form-item>
                      <template #label>
                         <span>
@@ -226,7 +226,7 @@
                         <el-radio label="1">不缓存</el-radio>
                      </el-radio-group>
                   </el-form-item>
-               </el-col>
+               </el-col> -->
                <el-col :span="12" v-if="form.menuType != 'F'">
                   <el-form-item>
                      <template #label>
