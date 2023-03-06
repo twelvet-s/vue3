@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询调度日志列表
 export function listJobLog(query) {
   return request({
-    url: '/schedule/job/log/list',
+    url: '/schedule/job/log/pageQuery',
     method: 'get',
     params: query
   })

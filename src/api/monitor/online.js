@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询在线用户列表
 export function list(query) {
   return request({
-    url: '/system/online/list',
+    url: '/system/online/pageQuery',
     method: 'get',
     params: query
   })

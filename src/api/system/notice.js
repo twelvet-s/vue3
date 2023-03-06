@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询公告列表
 export function listNotice(query) {
   return request({
-    url: '/system/notice/list',
+    url: '/system/notice/pageQuery',
     method: 'get',
     params: query
   })

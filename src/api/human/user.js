@@ -4,7 +4,7 @@ import { parseStrEmpty } from "@/utils/twelvet";
 // 查询用户列表
 export function listUser(query) {
   return request({
-    url: '/system/user/list',
+    url: '/system/user/pageQuery',
     method: 'get',
     params: query
   })
