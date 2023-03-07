@@ -17,10 +17,10 @@
       </el-form>
 
       <h4 class="form-header h4">角色信息</h4>
-      <el-table v-loading="loading" :row-key="getRowKey" @row-click="clickRow" ref="roleRef" @selection-change="handleSelectionChange" :data="roles.slice((pageNum - 1) * pageSize, pageNum * pageSize)">
+      <el-table v-loading="loading" :row-key="getRowKey" @row-click="clickRow" ref="roleRef" @selection-change="handleSelectionChange" :data="roles.slice((current - 1) * pageSize, current * pageSize)">
          <el-table-column label="序号" width="55" type="index" align="center">
             <template #default="scope">
-               <span>{{ (pageNum - 1) * pageSize + scope.$index + 1 }}</span>
+               <span>{{ (current - 1) * pageSize + scope.$index + 1 }}</span>
             </template>
          </el-table-column>
          <el-table-column type="selection" :reserve-selection="true" width="55"></el-table-column>
@@ -34,7 +34,7 @@
          </el-table-column>
       </el-table>
 
-      <pagination v-show="total > 0" :total="total" v-model:page="pageNum" v-model:limit="pageSize" />
+      <pagination v-show="total > 0" :total="total" v-model:page="current" v-model:limit="pageSize" />
 
       <el-form label-width="100px">
          <div style="text-align: center;margin-left:-120px;margin-top:30px;">
@@ -53,7 +53,7 @@ const { proxy } = getCurrentInstance();
 
 const loading = ref(true);
 const total = ref(0);
-const pageNum = ref(1);
+const current = ref(1);
 const pageSize = ref(10);
 const roleIds = ref([]);
 const roles = ref([]);

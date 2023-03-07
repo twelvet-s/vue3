@@ -103,15 +103,8 @@ service.interceptors.response.use(res => {
   },
   error => {
     console.log('err' + error)
-    let { message } = error;
-    if (message == "Network Error") {
-      message = "后端接口连接异常";
-    } else if (message.includes("timeout")) {
-      message = "系统接口请求超时";
-    } else if (message.includes("Request failed with status code")) {
-      message = "系统接口" + message.substr(message.length - 3) + "异常";
-    }
-    ElMessage({ message: message, type: 'error', duration: 5 * 1000 })
+    let { msg } = error.response.data;
+    ElMessage({ message: msg, type: 'error', duration: 5 * 1000 })
     return Promise.reject(error)
   }
 )
@@ -119,9 +112,9 @@ service.interceptors.response.use(res => {
 // 通用下载方法
 export function download(url, params, filename, config) {
   downloadLoadingInstance = ElLoading.service({ text: "正在下载数据，请稍候", background: "rgba(0, 0, 0, 0.7)", })
-  return service.post(url, params, {
+  return service.post(url, {
     transformRequest: [(params) => { return tansParams(params) }],
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data: params,
     responseType: 'blob',
     ...config
   }).then(async (data) => {

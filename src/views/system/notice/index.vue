@@ -104,7 +104,7 @@
       <pagination
          v-show="total > 0"
          :total="total"
-         v-model:page="queryParams.pageNum"
+         v-model:page="queryParams.current"
          v-model:limit="queryParams.pageSize"
          @pagination="getList"
       />
@@ -182,7 +182,7 @@ const title = ref("");
 const data = reactive({
   form: {},
   queryParams: {
-    pageNum: 1,
+    current: 1,
     pageSize: 10,
     noticeTitle: undefined,
     createBy: undefined,
@@ -223,7 +223,7 @@ function reset() {
 }
 /** 搜索按钮操作 */
 function handleQuery() {
-  queryParams.value.pageNum = 1;
+  queryParams.value.current = 1;
   getList();
 }
 /** 重置按钮操作 */
