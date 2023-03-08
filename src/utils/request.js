@@ -149,4 +149,21 @@ export function download(url, params, filename, config) {
     })
 }
 
+/**
+ * 通用文件上传
+ * @param url 地址
+ * @param formData 数据对象 FormData
+ */
+export const upload = (url, formData) => {
+    return service(`${url}`, {
+        method: 'POST',
+        requestType: 'form',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            Accept: '*/*',
+        },
+        data: formData,
+    });
+};
+
 export default service
