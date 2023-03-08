@@ -6,6 +6,7 @@ import {tansParams, blobValidate} from '@/utils/twelvet'
 import cache from '@/plugins/cache'
 import {saveAs} from 'file-saver'
 import useUserStore from '@/store/modules/user'
+import {isArray} from "@/utils/validate";
 
 let downloadLoadingInstance;
 // 是否显示重新登录
@@ -73,7 +74,7 @@ service.interceptors.response.use(res => {
         const msg = errorCode[code] || res.data.msg || errorCode['default']
         // 二进制数据则直接返回
         if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
-            return res.data
+            return res
         }
         if (code === 401) {
             if (!isRelogin.show) {
@@ -138,8 +139,8 @@ export function download(url, params, filename, config) {
             }
         }
 
-        const blob = new Blob([response])
-        saveAs(blob, filename)
+        const blob = new Blob([response.data])
+        saveAs(blob, currentFileName)
         downloadLoadingInstance.close();
     }).catch((r) => {
         console.error(r)
