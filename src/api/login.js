@@ -17,7 +17,8 @@ export function login(username, password, code, uuid) {
       Authorization: auth
     },
     method: 'post',
-    params: data
+    params: data,
+    data: data
   })
 }
 
